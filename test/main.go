@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/lrm25/outputWrapper"
+	"github.com/lrm25/programWrapper"
 )
 
 var executable string
@@ -26,7 +26,7 @@ func main() {
 	}
 	path := filepath.Join(wd, "../testprogram.exe")
 
-	program := outputWrapper.NewProgram(path)
+	program := programWrapper.NewProgram(path)
 	output, err := program.Run()
 	fmt.Println(output)
 }

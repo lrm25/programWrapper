@@ -1,4 +1,4 @@
-package outputWrapper
+package programWrapper
 
 import "os/exec"
 
