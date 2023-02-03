@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/lrm25/programWrapper"
+	programWrapper "github.com/lrm25/programWrapper/src"
 )
 
 var executable string
