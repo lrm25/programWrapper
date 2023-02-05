@@ -41,9 +41,16 @@ func Test_program(t *testing.T) {
 		fmt.Println(err.Error())
 		return
 	}
-	path := filepath.Join(wd, "../programWrapper.exe")
+	path := filepath.Join(wd, "../testProgram.exe")
 
 	program := programWrapper.NewProgram(path)
 	output, err := program.Run()
-	fmt.Println(output)
+	require.NoError(t, err)
+	require.Contains(t, output, "default message")
+
+	newMessage := "different message"
+	program = program.WithParam("message", newMessage)
+	output, err = program.Run()
+	require.NoError(t, err)
+	require.Contains(t, output, newMessage)
 }
