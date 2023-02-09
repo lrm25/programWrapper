@@ -34,6 +34,8 @@ func Test_program_cmdError(t *testing.T) {
 	require.Equal(t, cmdErr, err)
 }
 
+var nothing int
+
 func Test_program(t *testing.T) {
 
 	wd, err := os.Getwd()
