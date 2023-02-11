@@ -8,7 +8,7 @@ import (
 type Program struct {
 	executable            string
 	params                map[string]interface{}
-	GetCombinedOutputFunc func(cmd *exec.Cmd) ([]byte, error)
+	getCombinedOutputFunc func(cmd *exec.Cmd) ([]byte, error)
 }
 
 func NewProgram(executable string) *Program {
@@ -16,7 +16,7 @@ func NewProgram(executable string) *Program {
 		executable: executable,
 		params:     make(map[string]interface{}),
 	}
-	program.GetCombinedOutputFunc = program.GetCombinedOutput
+	program.getCombinedOutputFunc = program.getCombinedOutput
 	return program
 }
 
@@ -25,7 +25,7 @@ func (p *Program) WithParam(name string, value interface{}) *Program {
 	return p
 }
 
-func (p *Program) GetCombinedOutput(cmd *exec.Cmd) ([]byte, error) {
+func (p *Program) getCombinedOutput(cmd *exec.Cmd) ([]byte, error) {
 	return cmd.CombinedOutput()
 }
 
@@ -37,7 +37,7 @@ func (p *Program) Run() (string, error) {
 	}
 
 	cmd := exec.Command(p.executable, params...)
-	output, err := p.GetCombinedOutputFunc(cmd)
+	output, err := p.getCombinedOutputFunc(cmd)
 	if err != nil {
 		return "", err
 	}

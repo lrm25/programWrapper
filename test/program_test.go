@@ -1,11 +1,9 @@
 package main
 
 import (
-	"errors"
 	"flag"
 	"fmt"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"testing"
 
@@ -20,21 +18,6 @@ func init() {
 	flag.StringVar(&executable, "exe", "", "Executable to run")
 	flag.StringVar(&expectedOutput, "output", "", "Output to check against")
 }
-
-func Test_program_cmdError(t *testing.T) {
-
-	cmdErr := errors.New("test error")
-
-	program := programWrapper.NewProgram("")
-	program.GetCombinedOutputFunc = func(cmd *exec.Cmd) ([]byte, error) {
-		return nil, cmdErr
-	}
-	defer func() { program.GetCombinedOutputFunc = program.GetCombinedOutput }()
-	_, err := program.Run()
-	require.Equal(t, cmdErr, err)
-}
-
-var nothing int
 
 func Test_program(t *testing.T) {
 
