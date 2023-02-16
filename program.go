@@ -1,4 +1,4 @@
-package programWrapper
+package wrapper
 
 import (
 	"fmt"

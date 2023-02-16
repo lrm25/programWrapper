@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/lrm25/programWrapper"
+	"github.com/lrm25/wrapper"
 	"github.com/stretchr/testify/require"
 )
 
@@ -28,7 +28,7 @@ func Test_program(t *testing.T) {
 	}
 	path := filepath.Join(wd, "../testProgram.exe")
 
-	program := programWrapper.NewProgram(path)
+	program := wrapper.NewProgram(path)
 	output, err := program.Run()
 	require.NoError(t, err)
 	require.Contains(t, output, "default message")
