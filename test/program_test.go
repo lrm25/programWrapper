@@ -29,6 +29,9 @@ func Test_program(t *testing.T) {
 	path := filepath.Join(wd, "../testProgram.exe")
 
 	program := wrapper.NewProgram(path)
+	err = program.Compile("../testProgram/main.go")
+	require.NoError(t, err)
+
 	output, err := program.Run()
 	require.NoError(t, err)
 	require.Contains(t, output, "default message")
